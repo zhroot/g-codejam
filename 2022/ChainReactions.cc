@@ -1,7 +1,6 @@
 #include<iostream>
 #include<vector>
 #include<algorithm>
-#include<numeric>
 using namespace std;
 
 #define MAX_VALUE 1000000000
@@ -16,7 +15,7 @@ int main(){
         vector< vector<int> > PV;
         vector< int > NV;
         PV.resize(N);
-        NV.resize(N);
+        NV.reserve(N);
         for(int i=0;i<N;i++){
             int F;
             cin>>F;
@@ -25,7 +24,7 @@ int main(){
         for(int i=0;i<N;i++){
             int P;
             cin>>P;
-            NV[i] = P;
+            NV.push_back(P);
             if(P > 0){
                 PV[P-1].push_back(i);
             }
@@ -48,7 +47,7 @@ int main(){
             if(next == 0){
                 result += FV[i];
             } else if(PV[next-1].size() == 1){
-                 FV[next-1] = max(FV[next-1],FV[i]);
+                FV[next-1] = max(FV[next-1],FV[i]);
             } 
         }
         cout<<"Case #"<<t<<": "<<result<<endl;
